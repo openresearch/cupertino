@@ -172,6 +172,10 @@ module Cupertino
           form.field_with(name: "appIdId").value = extra_id
         end
         form.submit
+
+        if error = page.search('.errorMessage').first
+          raise error.text.strip
+        end
         #TODO: Handle this more gracefully with a return ID of some sort.
       end
 
